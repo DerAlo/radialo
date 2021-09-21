@@ -1,0 +1,77 @@
+<section xmlns:th="http://www.thymeleaf.org"
+         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+         layout:decorate="~{index}" layout:fragment="content">
+    <script th:src="@{/dashboard.js}" defer></script>
+    <script th:src="@{webjars/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js}" defer></script>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css}"/>
+    <h1>Alos Spielwiese</h1>
+    <div class="container">
+        <h3>MIXER Control</h3>
+
+        <a class="btn btn-link" href="#" data-toggle="collapse" data-target="#target1">
+            <h5>Input</h5>
+        </a>
+        <div id="target1" class="collapse">
+            <table id="mixerIn" style="width: 100%;" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <label>Name</label>
+                    </th>
+                    <th scope="col">
+                        <label>USE</label>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="m : ${mixer}">
+                    <td><span th:text="${m.name}">  </span></td>
+                    <td><input id="useAudioIn" type="checkbox"
+                               th:data-id="${m.name}"
+                               onclick="useAudioIn(this.getAttribute('data-id'))"
+                    ></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-link" href="#" data-toggle="collapse" data-target="#target2">
+            <h3>Output</h3>
+        </a>
+        <div id="target2" class="collapse">
+            <table id="mixerOut" style="width: 100%;" class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <label>Name</label>
+                    </th>
+                    <th scope="col">
+                        <label>USE</label>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="m : ${mixer}">
+                    <td><span th:text="${m.name}">  </span></td>
+                    <td><input id="useAudioOut" type="checkbox"
+                               th:data-id="${m.name}"
+                               onclick="useAudioOut(this.getAttribute('data-id'))"
+                    ></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3>CAT Control</h3>
+        <!--<button type="submit" id="setFreq" class="btn btn-primary">SetFreq</button>-->
+        <a type="submit" href="#" class="btn btn-success displayNone" id="setFreq">setFreq</a>
+        <a type="submit" href="#" class="btn btn-success displayNone" id="getFreq">getFreq</a>
+        <h3>FUNC Control</h3>
+        <a type="submit" href="#" class="btn btn-success displayNone" id="setMorse">setMorse</a>
+        <a type="submit" href="#" class="btn btn-success displayNone" id="getMorse">getMorse</a>
+        <h4>Test Control</h4>
+        <input id="text2morse" required type="text" class="form-control">
+        <a type="submit" href="#" class="btn btn-success displayNone" id="testMorse">testMorse</a>
+    </div>
+
+</section>
+
+
